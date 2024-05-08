@@ -1,0 +1,91 @@
+$white: #ffffff;
+$main-blue: #274fc7;
+
+@mixin flex($-direction, $-justify, $-align) {
+  display: flex;
+  flex-direction: $-direction;
+  justify-content: $-justify;
+  align-items: $-align;
+  flex-wrap: wrap;
+}
+
+@mixin size($-height, $-width) {
+  height: $-height;
+  width: $-width;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.montserrat-font {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  font-style: normal;
+}
+
+.login {
+  @include size(100vh, 100%);
+  @include flex(column, center, center);
+  font-family: "Montserrat", sans-serif;
+  background-color: $main-blue;
+  // background-image: url("")
+
+  &__login-form {
+    @include size(398px, 300px);
+    @include flex(column, center, center);
+  }
+
+  &__cart-container {
+    @include size(97.85px, 119.39px);
+    margin-bottom: 49.61px;
+  }
+
+  &__cart-image {
+    @include size(100%, 100%);
+    object-fit: contain;
+  }
+
+  &__login-input {
+    @include size(45px, 100%);
+    margin-top: 20px;
+    border: 1px solid $white;
+    border-radius: 4px;
+    background-color: transparent;
+  }
+
+  &__login-input::placeholder {
+    text-transform: uppercase;
+    color: $white;
+    font-size: 14px;
+    padding-left: 10px;
+  }
+
+  &__login-button {
+    @include size(45px, 100%);
+    margin-top: 43px;
+    background-color: $white;
+    color: $main-blue;
+    border: 1px solid $white;
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  &__forgot-text {
+    align-self: flex-end;
+    color: $white;
+    font-weight: 500;
+    font-size: 16px;
+    margin-top: 11px;
+  }
+
+  &__forgot-link {
+    text-decoration: none;
+    color: $white;
+  }
+}
