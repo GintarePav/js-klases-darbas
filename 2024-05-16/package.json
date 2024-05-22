@@ -1,0 +1,22 @@
+{
+  "name": "js-klases-darbas",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "laravel-mix": "^6.0.49",
+    "resolve-url-loader": "^5.0.0",
+    "sass": "^1.77.0"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "npm-watch": "^0.13.0",
+    "sass-loader": "^14.2.1"
+  }
+}

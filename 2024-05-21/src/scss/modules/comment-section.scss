@@ -1,0 +1,30 @@
+@import "_mixins.scss";
+@import "_variables.scss";
+
+.comment-section {
+    @include size(max-content, 100%);
+    gap: 20px;
+    margin-bottom: 30px;
+
+    &__single-comment {
+        @include size(max-content, 250px);
+        margin: 10px auto;
+        padding: 10px;
+        background-color: $grey;
+        border-radius: 5px;
+
+        p {
+            display: block;
+            text-align: justify;
+        }
+
+        p:first-child {
+            font-weight: bold;
+        }
+
+        p:last-child {
+            font-style: italic;
+        }
+
+    }
+}

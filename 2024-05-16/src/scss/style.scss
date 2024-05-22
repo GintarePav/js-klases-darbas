@@ -1,0 +1,41 @@
+@import '~bootstrap';
+
+@mixin size($size-height, $size-width) {
+    height: $size-height;
+    width: $size-width;
+}
+
+@mixin flex($flex-direction, $flex-align, $flex-justify) {
+    display: flex;
+    flex-direction: $flex-direction;
+    align-items: $flex-align;
+    justify-content: $flex-justify;
+    flex-wrap: wrap;
+}
+
+.gallery {
+    @include size(max-content, 100%);
+    @include flex(row, flex-start, center);
+    gap: 30px;
+
+    &__img-card {
+        @include size(300px, 300px);
+        @include flex(column, center, center);
+        background-color: #000000;
+        gap: 10px;
+
+        div {
+            @include size(200px, 200px);
+
+            img {
+                @include size(200px, 200px);
+                object-fit: cover;
+            }
+        }
+
+        p {
+            color: #ffffff;
+            text-align: center;
+        }
+    }
+}
