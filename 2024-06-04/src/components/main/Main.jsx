@@ -11,7 +11,7 @@ const Main = () => {
   const filteredPosts = data.filter((post) => {
     return post.title.includes(searchTerm);
   });
-  console.log(filteredPosts);
+  // console.log(filteredPosts);
   return (
     <div className="main container">
       <form className="d-flex">
