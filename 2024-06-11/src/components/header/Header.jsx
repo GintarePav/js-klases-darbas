@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
+import Profile from "../user/profile/Profile";
 
 const Header = () => {
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
+    <nav className="navbar navbar-expand-lg bg-body-tertiary mb-3">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
           Time logger
@@ -22,13 +23,19 @@ const Header = () => {
           className="collapse navbar-collapse justify-content-end"
           id="navbarNav"
         >
-          <ul className="navbar-nav">
+          <Profile />
+          {/* <ul className="navbar-nav">
             <li className="nav-item">
               <Link className="nav-link active" aria-current="page" to="/">
                 Home
               </Link>
             </li>
-          </ul>
+            <li className="nav-item">
+              <Link className="nav-link" aria-current="page" to="/login">
+                Login
+              </Link>
+            </li>
+          </ul> */}
         </div>
       </div>
     </nav>
