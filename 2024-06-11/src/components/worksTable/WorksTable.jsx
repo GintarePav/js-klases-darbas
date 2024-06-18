@@ -20,7 +20,6 @@ const WorksTable = (props) => {
                 {props.data?.map((work) => 
                     <WorkItem 
                     key={work.id}
-                    id={work.id}
                     date={work.date}
                     client={work.company}
                     service={work.service}
