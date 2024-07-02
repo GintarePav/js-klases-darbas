@@ -2,16 +2,14 @@ const fs = require("fs");
 const http = require("http");
 const path = require("path");
 const url = require("url");
-// const sayHello = require("./modules/sayHello");
 
 let product = fs.readFileSync("./data/products.json", "utf-8"); // skaito
 product = JSON.parse(product);
 
-// sayHello();
-
 // Create server:
 
 const server = http.createServer((req, res) => {
+  const filterFunction = require("./modules/filterFunction");
   const { pathname, query } = url.parse(req.url, true);
   console.log(pathname);
   switch (pathname) {
@@ -27,9 +25,9 @@ const server = http.createServer((req, res) => {
       res.writeHead(200, { "Content-Type": "application/json" });
       res.end(JSON.stringify(product[query.id]));
       break;
-    case "/api/search/name":
+    case "/api/product/search":
       res.writeHead(200, { "Content-Type": "application/json" });
-      res.end(JSON.stringify(product[query.productName]));
+      res.end(JSON.stringify(filterFunction(product, query.name)));
     default:
       res.writeHead(200, { "Content-Type": "text/html" });
       res.end("<h1>Page not found</h1>");
