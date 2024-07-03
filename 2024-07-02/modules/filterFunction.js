@@ -1,18 +1,18 @@
 module.exports = (data, title) => {
   const result = data.filter((product) => {
-    return product.productName === title
-  })
+    return product.productName.toLowerCase().includes(title);
+  });
 
-  if (result.lenght >= 1) {
+  if (result.length >= 1) {
     return result;
-  } else if(!title) {
+  } else if (!title) {
     return {
-      error: "Product title not provided"
-    }
+      error: "Product title not provided",
+    };
   } else {
     return {
-      result: "No product found"
-    }
+      result: "No product found",
+    };
   }
 };
 
@@ -24,5 +24,3 @@ Jo pagalba galima surasti produkta pagal pavadinima.
 
 url: http://127.0.0.1/8000/api/search/?name=Stacionarus
 */
-
-

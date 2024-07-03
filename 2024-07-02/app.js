@@ -28,6 +28,7 @@ const server = http.createServer((req, res) => {
     case "/api/product/search":
       res.writeHead(200, { "Content-Type": "application/json" });
       res.end(JSON.stringify(filterFunction(product, query.name)));
+      break;
     default:
       res.writeHead(200, { "Content-Type": "text/html" });
       res.end("<h1>Page not found</h1>");
@@ -38,3 +39,5 @@ const server = http.createServer((req, res) => {
 server.listen(8000, "127.0.0.1", () => {
   console.log("Server listening on port 8000");
 });
+
+//http://127.0.0.1:8000/
