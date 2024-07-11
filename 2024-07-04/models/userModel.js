@@ -17,6 +17,11 @@ const userSchema = new mongoose.Schema({
   photo: {
     type: String,
   },
+  role: {
+    type: String,
+    enum: ["user", "admin", "manager"],
+    default: "user",
+  },
   password: {
     type: String,
     required: [true, "Password is mndatory"],
@@ -33,9 +38,9 @@ const userSchema = new mongoose.Schema({
       message: "Passwords do not match",
     },
   },
-  password_change_date: Date,
-  password_reset_token: String,
-  password_reset_expire: Date,
+  passwordChangedAt: Date,
+  passwordResetToken: String,
+  passwordResetExpire: Date,
   active: {
     type: Boolean,
     default: true,
@@ -46,7 +51,7 @@ const userSchema = new mongoose.Schema({
 userSchema.pre("save", async function (next) {
   // hash password with 12 cost
   this.password = await bcrypt.hash(this.password, 12);
-  this.passwordConfirm = undefined; // nusiims antras pw ir nenueis i duombaze
+  this.password_confirm = undefined; // nusiims antras pw ir nenueis i duombaze
   next(); //be sito sustos uzklausa ir duomenys serverio nepasieks
 });
 
@@ -55,6 +60,16 @@ userSchema.methods.correctPassword = async (
   userPassword
 ) => {
   return await bcrypt.compare(candidatePassword, userPassword);
+};
+
+userSchema.methods.changePasswordAfter = function (JwtTimestamp) {
+  if (this.passwordChangedAt) {
+    const changeTimeStamp = parseInt(
+      this.passwordChangedAt.getTime() / 1000,
+      10
+    );
+    return JwtTimestamp < changeTimeStamp;
+  }
 };
 
 const User = mongoose.model("User", userSchema);

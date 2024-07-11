@@ -14,7 +14,7 @@ exports.getAllHotels = async (req, res) => {
       /\b(gte|gt|lte|lt)\b/g,
       (match) => `$${match}` // query rasyti reikia taip: http://localhost:3000/api/v1/hotels?comfort[gte]=5
     );
-    console.log(JSON.parse(queryString));
+    // console.log(JSON.parse(queryString));
 
     let query = Hotel.find(JSON.parse(queryString));
 
@@ -41,7 +41,7 @@ exports.getAllHotels = async (req, res) => {
         hotels,
       },
     });
-    console.log(hotels);
+    // console.log(hotels);
   } catch (err) {
     console.log(err);
   }
@@ -63,7 +63,7 @@ exports.createHotel = async (req, res) => {
 
 exports.getHotelById = async (req, res) => {
   try {
-    const hotel = await Hotel.findById(req.params.id);
+    const hotel = await Hotel.findById(req.params.id).populate("reviews"); // populate, kad sudeti reviews is duombazes
     if (!hotel) {
       res.status(404).json({
         status: "failed",

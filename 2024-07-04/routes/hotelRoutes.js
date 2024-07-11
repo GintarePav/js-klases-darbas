@@ -1,11 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const hotelController = require("./../controllers/hotelController");
+const authController = require("../controllers/authController");
+const reviewRouter = require("../routes/reviewRoutes");
 
 // route nebedubliuojam nuo hotelRouter app.js faile; router seniau buvo app.
+router.use(authController.protect); // padaro, kad visi routes butu apsaugoti nuo neprisijungusiu vartotoju
 router
   .route("/")
-  .get(hotelController.getAllHotels)
+  .get(authController.restrictTo("user"), hotelController.getAllHotels)
   .post(hotelController.createHotel);
 
 router
@@ -13,6 +16,8 @@ router
   .get(hotelController.getHotelById)
   .patch(hotelController.updateHotel)
   .delete(hotelController.deleteHotel);
+
+router.use("/:hotelId/reviews", reviewRouter); // ir post ir get reikia nurodyti hotel id, kad norint palikti review nerasant viezbucio id sukristu i tinkama viezbuti
 
 module.exports = router;
 
